@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h2>Recommendations for "{{ book_name }}"</h2>
+    <ul>
+        {% for title, score in recommendations %}
+        <li>
+            <a href="https://www.amazon.com/s?k={{ title | urlencode }}" target="_blank">
+                {{ title }} - Score: {{ "%.2f"|format(score) }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('home') }}">Try another book</a>
+</body>
+</html>
